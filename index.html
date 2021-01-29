@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Scientific Programming Guidelines</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/solarized.css" id="theme">
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" id="highlight-theme">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="dist/custom.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Scientific Programming Best Practices</h2>
+          <h3 style="margin-bottom: 10%;">
+            Hello world!</h3>
+          <p>Tom Westerhout</p>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Contents</h2>
+
+          <ul>
+            <li>Version control;</li>
+            <li>Containerization;</li>
+            <li>Testing &amp; deployment;</li>
+            <li>Style.</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Version control</h2>
+          <p>This slide is unfinished and contains random thoughts</p>
+
+          <ul>
+            <li>What is version control?</li>
+            <li>Git!</li>
+            <li>Main concepts</li>
+            <li>Main commands</li>
+            <li>Cheat sheets</li>
+            <li>What to do with data?</li>
+            <li>Git LFS</li>
+            <li>Surfdrive &amp; DVC</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>What is version control?</h2>
+
+          <div style="width: 70%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%">
+              Version control is a system that records changes to a file or set
+              of files over time so that you can recall specific versions later.
+            </blockquote>
+            <p style="font-size: 50%; text-align: right;">
+              <span style="font-style: italic">Source:</span>
+              <a href=https://git-scm.com/book/en/v2>Pro Git Book</a>
+            </p>
+          </div>
+
+          <div style="width: 100%; margin-top: 5%; margin-left: auto; margin-right: auto;">
+            <p style="text-align: left;">Example:</p>
+            <pre style="font-size: 80%; width: 100%;"><code data-trim data-noescape class="shell">
+              $ ls
+              main_fixed_eq5.tex  main_prb.tex  main_prl_final.tex
+              main_prl.tex        main.tex      main_v2.tex
+              $ # Thinking...
+              $ cp main_prb.tex main_prb_final.tex
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Local version control systems</h2>
+
+          <div class="r-hstack">
+            <div style="text-align: left; margin-right: 5%;">
+              <ul class="checklist">
+                <li class="fail">How to collaborate?</li>
+                <li class="fail">Files are all in one place!</li>
+              </ul>
+            </div>
+            <img src="assets/img/local_version_control.png" style="margin: 0; width: 50%;">
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Centralized version control systems</h2>
+
+          <div class="r-hstack">
+            <div style="text-align: left; margin-right: 5%;">
+              <ul class="checklist">
+                <li class="pass">How to collaborate?</li>
+                <li class="fail">Files are all in one place!</li>
+              </ul>
+            </div>
+            <img src="assets/img/centralized_version_control.png" style="margin: 0; width: 60%;">
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2 style="margin-bottom: 0;">Distributed version control systems</h2>
+
+          <div class="r-hstack">
+            <div style="text-align: left; margin-right: 5%;">
+              <ul class="checklist">
+                <li class="pass">How to collaborate?</li>
+                <li class="pass">Files are all in one place!</li>
+              </ul>
+              <p style="margin-top: 10%; text-align: center; font-size: 200%; font-weight: bold;">Git</p>
+            </div>
+            <img src="assets/img/distributed_version_control.png" style="margin: 0; width: 42%;">
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Git</h2>
+
+          <div style="width: 70%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%;">
+              Of the professional developers who responded to the survey,
+              almost 82% use GitHub as a collaborative tool
+            </blockquote>
+            <p style="font-size: 50%; margin-top: 0; text-align: right;">
+              <span style="font-style: italic">Source:</span>
+              <a href=https://insights.stackoverflow.com/survey/2020#technology-collaboration-tools>
+                Stack Overflow Developer Survey 2020</a>
+            </p>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2 style="margin-bottom: 7%;">Repository (or Git project)</h2>
+
+          <code style="font-weight: bold; font-size: 150%;">
+            repository = files + history</code>
+
+          <div class="r-hstack" style="margin-top: 5%;">
+            <p class="concept" style="margin-top: 5%; margin-bottom: auto; margin-right: 5%;">
+              Files:</p>
+            <pre style="font-size: 60%; margin-left: 5%; width: 45%;"><code data-trim data-noescape class="shell">
+              quantum_skyrmions/
+              ├── Analysis
+              │   ├── 19_site_cluster.yml
+              │   ├── 7_site_cluster.yml
+              │   ├── slurm_main.sh
+              │   └── SpinED-x86_64.AppImage
+              ├── Drafts
+              │   ├── paper.tex
+              │   └── references.bib
+              ├── Figures
+              │   ├── ground_state_energy.pdf
+              │   └── topological_invariant.pdf
+              ├── Proofs
+              ├── Published
+              ├── Raw data
+              │   ├── exact_diagonalization_result_19.h5
+              │   └── exact_diagonalization_result_7.h5
+              └── Submitted
+            </code></pre>
+            <p style="margin-top: auto; margin-bottom: auto; margin-left: 5%;">
+              i.e. your whole project folder</p>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>History</h2>
+
+          <div style="width: 70%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%;">
+              The file history appears as snapshots in time called <span class="concept">commits</span>
+            </blockquote>
+            <p style="font-size: 55%; margin-top: 0; text-align: right;">
+              <span style="font-style: italic">Source:</span>
+              <a href=https://guides.github.com/introduction/git-handbook/>Git Handbook</a>
+            </p>
+          </div>
+
+          <ul>
+            <li>Commits are described by <span class="concept">hashes</span> (SHA),<br>
+              e.g. <code>9d33835a8e744c5f9cc950f672885dd706c0852f</code></li>
+            <li>Hash function is any function that can be used to map data of arbitrary size to fixed-size values
+              <span style="font-size: 55%;">(<span style="font-style: italic;">Source:</span>
+                <a href="https://en.wikipedia.org/wiki/Hash_function">Wikipedia</a>)</span></li>
+            <li>Commits are assembled into linked lists:</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>History</h2>
+
+          <p>Multiple lines of development: branches</p>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        slideNumber: true,
+        hash: true,
+        center: true,
+        transition: 'none',
+        controls: false,
+        controlsTutorial: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMath, RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
