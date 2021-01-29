@@ -1,0 +1,42 @@
+
+.reveal .slides section {
+  font-size: 30px; }
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+  text-transform: initial; }
+
+@font-face {
+  font-family: Iosevka;
+  src: url(../assets/iosevka-regular.woff2); }
+
+.reveal code {
+  font-family: Iosevka; }
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 70%;
+  margin: 20px auto;
+  padding: 5px;
+  font-style: italic;
+  font-size: 90%;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 10px rgba(101, 123, 131, 1.0); }
+
+ul.checklist {
+  list-style-type: none;
+  margin: 0 0 0 0; }
+li.fail:before {
+  content: "\2716";
+  font-size: 110%;
+  color: #dc322f;
+  padding-right: 10px; }
+li.pass:before {
+  content: "\2714";
+  font-size: 110%;
+  color: #859900;
+  padding-right: 10px; }
+
+.concept {
+  font-weight: bold;
+  text-decoration: underline; }
