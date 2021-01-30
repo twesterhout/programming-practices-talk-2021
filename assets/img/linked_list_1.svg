@@ -16,7 +16,7 @@
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
-   sodipodi:docname="drawing.svg">
+   sodipodi:docname="linked_list_1.svg">
   <defs
      id="defs2">
     <marker
@@ -281,8 +281,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="249.4559"
-     inkscape:cy="252.9223"
+     inkscape:cx="261.89306"
+     inkscape:cy="265.02927"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -291,10 +291,10 @@
      inkscape:snap-intersection-paths="false"
      inkscape:object-nodes="false"
      inkscape:snap-object-midpoints="true"
-     inkscape:window-width="1977"
-     inkscape:window-height="1030"
-     inkscape:window-x="1297"
-     inkscape:window-y="318"
+     inkscape:window-width="1421"
+     inkscape:window-height="1199"
+     inkscape:window-x="951"
+     inkscape:window-y="444"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -304,7 +304,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -465,5 +465,28 @@
          x="111.88487"
          y="53.009476"
          style="font-size:3.175px;fill:#073642;fill-opacity:1;stroke-width:0.264583">HEAD</tspan></text>
+    <rect
+       style="fill:none;stroke:#dc322f;stroke-width:0.765;stroke-linecap:round;stroke-miterlimit:9.07273;stroke-dasharray:none;stroke-dashoffset:46.4504;stroke-opacity:1"
+       id="rect1147"
+       width="16.369785"
+       height="14.348152"
+       x="90.84845"
+       y="52.130386"
+       ry="3.8958044" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.175px;line-height:1.25;font-family:Lato;-inkscape-font-specification:'Lato Bold';letter-spacing:0px;word-spacing:0px;fill:#dc322f;fill-opacity:1;stroke-width:0.264583"
+       x="92.510033"
+       y="71.984749"
+       id="text1151"><tspan
+         sodipodi:role="line"
+         id="tspan1149"
+         x="92.510033"
+         y="71.984749"
+         style="font-size:3.175px;fill:#dc322f;fill-opacity:1;stroke-width:0.264583">a commit</tspan></text>
+    <path
+       style="fill:none;stroke:#dc322f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 95.035776,72.654441 H 105.66726"
+       id="path1153" />
   </g>
 </svg>
