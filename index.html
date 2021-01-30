@@ -21,9 +21,8 @@
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
           <h2>Scientific Programming Best Practices</h2>
-          <h3 style="margin-bottom: 10%;">
-            Hello world!</h3>
-          <p>Tom Westerhout</p>
+          <p style="margin-top: 10%;">Tom Westerhout<br>
+            <span style="font-size: 80%;">2 February 2021</span></p>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
@@ -32,13 +31,18 @@
           <h2>Contents</h2>
 
           <ul>
-            <li>Version control;</li>
-            <li>Containerization;</li>
-            <li>Testing &amp; deployment;</li>
-            <li>Style.</li>
+            <li>Reproducibility;<br>
+              <span class="fragment">
+                &rarr; keep track of your files<br></span>
+              <span class="fragment">
+                &nbsp; &nbsp; &rarr; <span class="concept">Version Control Systems (VCS)</span></span>
+            </li>
+            <li>Correctness;</li>
+            <li style="color: #93a1a1;">Performance &mdash; some other time.</li>
           </ul>
         </section>
 
+        <!--
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
@@ -56,6 +60,7 @@
             <li>Surfdrive &amp; DVC</li>
           </ul>
         </section>
+        -->
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
@@ -73,7 +78,8 @@
             </p>
           </div>
 
-          <div style="width: 100%; margin-top: 5%; margin-left: auto; margin-right: auto;">
+          <div class="fragment"
+               style="width: 100%; margin-top: 5%; margin-left: auto; margin-right: auto;">
             <p style="text-align: left;">Example:</p>
             <pre style="font-size: 80%; width: 100%;"><code data-trim data-noescape class="shell">
               $ ls
@@ -91,8 +97,8 @@
           <h2>Local version control systems</h2>
 
           <div class="r-hstack">
-            <div style="text-align: left; margin-right: 5%;">
-              <ul class="checklist">
+            <div class="fragment" style="text-align: left; margin-right: 5%;">
+              <ul class="checklist" >
                 <li class="fail">How to collaborate?</li>
                 <li class="fail">Files are all in one place!</li>
               </ul>
@@ -107,7 +113,7 @@
           <h2>Centralized version control systems</h2>
 
           <div class="r-hstack">
-            <div style="text-align: left; margin-right: 5%;">
+            <div class="fragment" style="text-align: left; margin-right: 2%;">
               <ul class="checklist">
                 <li class="pass">How to collaborate?</li>
                 <li class="fail">Files are all in one place!</li>
@@ -123,12 +129,13 @@
           <h2 style="margin-bottom: 0;">Distributed version control systems</h2>
 
           <div class="r-hstack">
-            <div style="text-align: left; margin-right: 5%;">
+            <div class="fragment" style="text-align: left; margin-right: 5%;">
               <ul class="checklist">
                 <li class="pass">How to collaborate?</li>
                 <li class="pass">Files are all in one place!</li>
               </ul>
-              <p style="margin-top: 10%; text-align: center; font-size: 200%; font-weight: bold;">Git</p>
+              <p class="fragment" style="margin-top: 10%; text-align: center; font-size: 200%; font-weight: bold;">
+                Git</p>
             </div>
             <img src="assets/img/distributed_version_control.png" style="margin: 0; width: 42%;">
           </div>
@@ -142,7 +149,8 @@
           <div style="width: 70%; margin-left: auto; margin-right: auto;">
             <blockquote style="width: 100%;">
               Of the professional developers who responded to the survey,
-              almost 82% use GitHub as a collaborative tool
+              almost <span style="font-weight: bold;">82%</span> use GitHub as a
+              collaborative tool
             </blockquote>
             <p style="font-size: 50%; margin-top: 0; text-align: right;">
               <span style="font-style: italic">Source:</span>
@@ -150,6 +158,11 @@
                 Stack Overflow Developer Survey 2020</a>
             </p>
           </div>
+
+          <ul class="fragment">
+            <li>Concepts</li>
+            <li>Example &amp; some commands</li>
+          </ul>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
@@ -160,10 +173,10 @@
           <code style="font-weight: bold; font-size: 150%;">
             repository = files + history</code>
 
-          <div class="r-hstack" style="margin-top: 5%;">
-            <p class="concept" style="margin-top: 5%; margin-bottom: auto; margin-right: 5%;">
+          <div class="r-hstack fragment" style="margin-top: 5%;">
+            <p style="margin-top: 2%; margin-bottom: auto; margin-left: 5%; margin-right: 0;">
               Files:</p>
-            <pre style="font-size: 60%; margin-left: 5%; width: 45%;"><code data-trim data-noescape class="shell">
+            <pre style="font-size: 60%; margin-left: 4%; width: 45%;"><code data-trim data-noescape class="shell">
               quantum_skyrmions/
               ├── Analysis
               │   ├── 19_site_cluster.yml
@@ -183,7 +196,7 @@
               │   └── exact_diagonalization_result_7.h5
               └── Submitted
             </code></pre>
-            <p style="margin-top: auto; margin-bottom: auto; margin-left: 5%;">
+            <p style="margin-top: auto; margin-bottom: auto; margin-left: 4%;">
               i.e. your whole project folder</p>
           </div>
         </section>
@@ -204,13 +217,15 @@
           </div>
 
           <ul>
-            <li>Commits are described by <span class="concept">hashes</span> (SHA),<br>
+            <li class="fragment">Commits are described by <span class="concept">hashes</span> (SHA),<br>
               e.g. <code>9d33835a8e744c5f9cc950f672885dd706c0852f</code></li>
-            <li>Hash function is any function that can be used to map data of arbitrary size to fixed-size values
+            <li class="fragment">Hash function is any function that can be used
+              to map data of arbitrary size to fixed-size values
               <span style="font-size: 55%;">(<span style="font-style: italic;">Source:</span>
                 <a href="https://en.wikipedia.org/wiki/Hash_function">Wikipedia</a>)</span></li>
-            <li>Commits are assembled into linked lists:</li>
-            <img src="assets/img/linked_list_1.png" style="text-align: center; width: 80%;">
+            <li class="fragment">Commits are assembled into linked lists:
+                <img src="assets/img/linked_list_1.png" style="text-align: center; width: 80%;">
+            </li>
           </ul>
         </section>
 
@@ -302,7 +317,95 @@
           <h2>What to do with data?</h2>
         </section>
 
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Recap</h2>
+          <h3>Version Control Systems</h3>
 
+          <ul>
+            <li>Copy/paste &rarr; Local &rarr; Centralized &rarr; Distributed &rarr; Git</li>
+            <li>Repository, commits, branches</li>
+            <li>Remotes?</li>
+            <li><code>add</code>, <code>commit</code>, <code>push</code></li>
+            <li><code>status</code>, <code>diff</code>, <code>log</code></li>
+            <li><code>clone</code>, <code>pull</code></li>
+            <li>Each project has a corresponding repository</li>
+            <li>Git LFS for important data files</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Reproducibility</h2>
+
+          <ul>
+            <li class="fragment">Sharing your environment</li>
+            <li class="fragment">Making your code portable</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Sharing your environment: virtualization</h2>
+
+          <div style="width: 75%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%;">
+              <span class="concept">Virtualization</span> refers to the act of
+              creating a virtual (rather than actual) version of something,
+              including virtual computer hardware platforms, storage devices,
+              and computer network resources.
+            </blockquote>
+            <p style="font-size: 55%; margin-top: 0; text-align: right;">
+              <span style="font-style: italic">Source:</span>
+              <a href=https://en.wikipedia.org/wiki/Virtualization/>Wikipedia</a>
+            </p>
+          </div>
+
+          <div style="text-align: left; margin-left: 10%;">
+            <ul>
+              <li>Virtual machines;</li>
+              <li>Hardware drivers;</li>
+              <li>...</li>
+            </ul>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Virtualization: levels</h2>
+
+          <ul>
+            <li>Virtual machines (e.g. <a href="https://www.virtualbox.org/">VirtualBox</a>,
+              <a href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux</a>):<br>
+              &rarr; abstracts everything <span style="text-decoration: underline;">including the kernel</span><br>
+              &rarr; performance overhead
+            </li>
+            <li>Containers (e.g. <a href="https://www.docker.com/">Docker</a>,
+              <a href="https://sylabs.io/docs/">Singularity</a>):<br>
+              &rarr; reuses the kernel, but abstracts everything else<br>
+              &rarr; no performance overhead
+            </li>
+            <li>Virtual environments</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Conda</h2>
+
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Singularity</h2>
+
+        </section>
 
       </div>
     </div>
