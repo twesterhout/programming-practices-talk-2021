@@ -23,6 +23,11 @@
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 0px 10px rgba(101, 123, 131, 1.0); }
 
+/*.reveal table {
+  border: 3px solid #657b83; }*/
+.reveal table td {
+  border: 3px solid #657b83; }
+
 ul.checklist {
   list-style-type: none;
   margin: 0 0 0 0; }
