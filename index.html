@@ -42,26 +42,6 @@
           </ul>
         </section>
 
-        <!--
-        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
-                 data-background-size="25%"
-                 data-background-position="bottom right 10%">
-          <h2>Version control</h2>
-          <p>This slide is unfinished and contains random thoughts</p>
-
-          <ul>
-            <li>What is version control?</li>
-            <li>Git!</li>
-            <li>Main concepts</li>
-            <li>Main commands</li>
-            <li>Cheat sheets</li>
-            <li>What to do with data?</li>
-            <li>Git LFS</li>
-            <li>Surfdrive &amp; DVC</li>
-          </ul>
-        </section>
-        -->
-
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
@@ -581,16 +561,29 @@
 
           <ul>
             <li>Virtual machines (e.g. <a href="https://www.virtualbox.org/">VirtualBox</a>,
-              <a href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux</a>):<br>
-              &rarr; abstracts everything <span style="text-decoration: underline;">including the kernel</span><br>
-              &rarr; performance overhead
+              <a href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux</a>):
+              <ul class="checklist">
+                <li class="pass">abstracts everything
+                  <span style="text-decoration: underline;">including the kernel</span>;
+                </li>
+                <li class="fail">performance overhead;</li>
+              </ul>
             </li>
-            <li>Containers (e.g. <a href="https://www.docker.com/">Docker</a>,
-              <a href="https://sylabs.io/docs/">Singularity</a>):<br>
-              &rarr; reuses the kernel, but abstracts everything else<br>
-              &rarr; no performance overhead
+            <li class="fragment">Containers (e.g. <a href="https://www.docker.com/">Docker</a>,
+              <a href="https://sylabs.io/docs/">Singularity</a>):
+              <ul class="checklist">
+                <li class="pass">reuses the kernel, but abstracts everything else</li>
+                <li class="pass">no performance overhead</li>
+              </ul>
             </li>
-            <li>Virtual environments</li>
+            <li class="fragment">Virtual environments (e.g.
+              <a href="https://docs.python.org/3/tutorial/venv.html"><code>venv</code></a>,
+              <a href="https://docs.conda.io/en/latest/">Conda</a>):
+              <ul class="checklist">
+                <li class="meh">abstracts only certain applications</li>
+                <li class="pass">no performance overhead</li>
+              </ul>
+            </li>
           </ul>
         </section>
 
@@ -599,12 +592,79 @@
                  data-background-position="bottom right 10%">
           <h2>Conda</h2>
 
+          <div style="width: 75%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%;">
+              Package, dependency and environment management for any language
+              &mdash; Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++,
+              FORTRAN, and more.
+            </blockquote>
+            <p style="font-size: 55%; margin-top: 0; text-align: right;">
+              <span style="font-style: italic">Source:</span>
+              <a href="https://docs.conda.io/en/latest/">Conda documentation</a>
+            </p>
+          </div>
+
+          <ul>
+            <li><span class="concept">Packages</span> &mdash; programs, libraries, etc.</li>
+            <li><span class="concept">Environments</span> consist of packages</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Example: creating environments from files</h2>
+
+          <div class="r-hstack">
+            <pre style="font-size: 60%; margin-right: 0; width: 40%;"><code data-trim data-noescape class="shell">
+            $ # Creating an environment...
+            $ conda env create -f conda-devel.yml
+            $ # Adding to git...
+            $ git add conda-devel.yml
+            $ git commit -m "Create environment"
+            </code></pre>
+
+            <div style="width: 55%;">
+              <p style="text-align: left; margin-left: 25px; margin-top: 0; margin-bottom: 0; font-size: 80%;"><code>conda-devel.yml</code>:</p>
+              <pre style="font-size: 50%; margin-top: 0;"><code data-trim data-noescape class="yaml">
+                name: lattice_symmetries_devel
+                channels:
+                  - defaults
+                  - weinbe58 # for QuSpin
+                dependencies:
+                  - python
+                  - pip:
+                    - black
+                    - neovim
+                    - loguru
+                  - numpy
+                  - scipy
+                  # Stuff to compile the package locally
+                  - gcc_linux-64
+                  - gxx_linux-64
+                  - cmake
+                  - ninja
+                  # For benchmarks and testing
+                  - numba ==0.48 # QuSpin doesn't work with the latest version
+                  - omp # Get multi-threading support for QuSpin
+                  - quspin
+                  ...
+              </code></pre>
+            </div>
+          </div>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
           <h2>Singularity</h2>
+
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>...</h2>
 
         </section>
 
@@ -627,6 +687,7 @@
         transition: 'none',
         controls: false,
         controlsTutorial: false,
+        progress: false,
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [ RevealMath, RevealMarkdown, RevealHighlight, RevealNotes ]
