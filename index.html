@@ -239,31 +239,59 @@
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
+          <h2>Git</h2>
+
+          <ul>
+            <li>Concepts (repository, commit, hash, branch)<br>
+                <p class="concept" style="text-align: center;">Questions?</p>
+            </li>
+            <li class="fragment">Examples &amp; commands</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
           <h2 style="margin-top: 0; margin-bottom: 0;">Example: creating a repository</h2>
 
-          <ul style="margin-top: 10px;">
-            <li>Choose a server: <a href="https://github.com/">Github</a>,
-              <a href="https://about.gitlab.com/">GitLab.com</a>,
-              <a href="https://gitlab.science.ru.nl/">Science GitLab</a></li>
-            <li>Create a repository using web interface (Github as an example):
-              <div style="text-align: center;" class="r-stack">
-                <img src="assets/img/github_click_on_new.png"
-                     style="width: 80%; border: 4px solid #657b83; margin-top: 10px; margin-bottom: 0;"
-                     class="fragment fade-out"
-                     data-fragment-index="1"></img>
-                <span class="fragment fade-out" data-fragment-index="2">
-                  <img src="assets/img/github_choose_a_name.png"
-                       style="width: 60%; border: 4px solid #657b83; margin-top: 10px;"
+          <div class="r-stack">
+            <ul style="margin-top: 10px; margin-left: 10%;">
+              <li>Choose a server: <a href="https://github.com/">Github</a>,
+                <a href="https://about.gitlab.com/">GitLab.com</a>,
+                <a href="https://gitlab.science.ru.nl/">Science GitLab</a>
+                <div class="fragment fade-out" data-fragment-index="1"
+                     style="text-align: center;">
+                  <p>GitLab is technically superior,<br>
+                  <span class="concept">but</span> all the cool kids hang out on Github.<br>
+                  </p>
+                  <p>&rarr; we will use Github for examples</p>
+                </div>
+              </li>
+            </ul>
+
+            <ul class="fragment" data-fragment-index="1" style="margin-top: 10px; margin-left: 10%;">
+              <li>Choose a server: <a href="https://github.com/">Github</a>,
+                <a href="https://about.gitlab.com/">GitLab.com</a>,
+                <a href="https://gitlab.science.ru.nl/">Science GitLab</a></li>
+              <li>Create a repository using web interface:
+                <div style="text-align: center;" class="r-stack">
+                  <img src="assets/img/github_click_on_new.png"
+                       style="width: 80%; border: 4px solid #657b83; margin-top: 10px; margin-bottom: 0;"
+                       class="fragment fade-in-then-out" data-fragment-index="1"></img>
+                  <span class="fragment fade-out" data-fragment-index="3">
+                    <img src="assets/img/github_choose_a_name.png"
+                         style="width: 60%; border: 4px solid #657b83; margin-top: 10px;"
+                         class="fragment fade-in"
+                         data-fragment-index="2"></img>
+                  </span>
+                  <img src="assets/img/github_follow_instructions.png"
+                       style="width: 85%; border: 4px solid #657b83; margin-top: 10px;"
                        class="fragment fade-in"
-                       data-fragment-index="1"></img>
-                </span>
-                <img src="assets/img/github_follow_instructions.png"
-                     style="width: 85%; border: 4px solid #657b83; margin-top: 10px;"
-                     class="fragment fade-in"
-                     data-fragment-index="2"></img>
-              </div>
-            </li>
-          </ul>
+                       data-fragment-index="3"></img>
+                </div>
+              </li>
+            </ul>
+          </div>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
@@ -280,18 +308,79 @@
               Initialized empty Git repository in .../quantum_skyrmions/.git/
               $ git remote add origin https://github.com/twesterhout/quantum_skyrmions.git
           </code></pre>
+          <img src="assets/img/github_remote.png"
+               style="width: 30%; border: 4px solid #657b83; padding: 5px; margin-top: 10px;"></img>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
-          <h2>Example: making changes to files</h2>
+          <h2>Example: cloning a repository</h2>
 
+          <p>What your collaborators will do after you have created a repository:</p>
           <pre style="font-size: 70%;"><code data-trim
                                              data-noescape
-                                             data-line-numbers="1|2-3|4"
+                                             data-line-numbers="1|2,5-10|11"
                                              class="shell">
-              $ vi "SimpleTests.wl"
+              $ git clone https://github.com/twesterhout/quantum_skyrmions.git
+              Cloning into 'quantum_skyrmions'...
+              Username for 'https://github.com': <span style="font-style: italic">username</span>
+              Password for 'https://<span style="font-style: italic">username</span>@github.com': <span style="font-style: italic">password</span>
+              remote: Enumerating objects: 147, done.
+              remote: Counting objects: 100% (147/147), done.
+              remote: Compressing objects: 100% (119/119), done.
+              remote: Total 147 (delta 30), reused 140 (delta 26), pack-reused 0
+              Receiving objects: 100% (147/147), 2.46 MiB | 777.00 KiB/s, done.
+              Resolving deltas: 100% (30/30), done.
+              $ cd quantum_skyrmions/
+          </code></pre>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2 style="margin-top: 0; margin-bottom: 0;">Example: making changes to files</h2>
+
+          <pre style="font-size: 70%; margin-top: 0; margin-bottom: 0;"><code
+               data-trim data-noescape data-line-numbers="1|2-3|4|5|6,9-17"
+               class="shell" style="max-height: 500px;">
+              $ vi "Analysis/SimpleTests.wl" # Making the changes...
+              $ WolframKernel -script Analysis/SimpleTests.wl # Testing...
+              Hello world!
+              $ git add Analysis/SimpleTests.wl # Track SimpleTests.wl
+              $ git commit -m "Implement hello world" # Commit to changes
+              $ git push origin main # Uploading to remote server...
+              Username for 'https://github.com': <span style="font-style: italic;">username</span>
+              Password for 'https://<span style="font-style: italic;">username</span>@github.com': <span style="font-style: italic;">password</span>
+              Enumerating objects: 9, done.
+              Counting objects: 100% (9/9), done.
+              Delta compression using up to 8 threads
+              Compressing objects: 100% (6/6), done.
+              Writing objects: 100% (6/6), 496.66 KiB | 12.42 MiB/s, done.
+              Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+              remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+              To https://github.com/twesterhout/quantum_skyrmions
+                 bd922d6..817e53d  main -&gt; main
+          </code></pre>
+          <div class="fragment r-hstack" style="margin-top: 5px; align-items: flex-start;">
+            <p style="margin-top: 0; margin-right: 3%;">Now you are safe:</p>
+            <ul class="checklist" style="margin-top: 0;">
+              <li class="pass">Code is backed up</li>
+              <li class="pass">Trivial to revert to a previous state</li>
+            </ul>
+          <div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Example: updating</h2>
+
+          <pre style="font-size: 70%; margin-top: 0; margin-bottom: 0;"><code
+               data-trim data-noescape data-line-numbers="1|2-3|4|5|6,9-17"
+               class="shell" style="max-height: 500px;">
+              $ cd quantum_skyrmions/
+              $ git pull origin main # Pull the changes from remote
           </code></pre>
         </section>
 
