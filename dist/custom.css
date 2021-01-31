@@ -31,6 +31,10 @@
 ul.checklist {
   list-style-type: none;
   margin: 0 0 0 0; }
+ul ul.checklist {
+  list-style-type: none;
+  margin: 0 0 0 0; }
+
 li.fail:before {
   content: "\2716";
   font-size: 110%;
@@ -41,6 +45,13 @@ li.pass:before {
   font-size: 110%;
   color: #859900;
   padding-right: 10px; }
+li.meh:before {
+  content: "?";
+  font-size: 120%;
+  font-weight: bold;
+  color: #657b83;
+  padding-left: 4px;
+  padding-right: 18px; }
 
 .concept {
   font-weight: bold;
