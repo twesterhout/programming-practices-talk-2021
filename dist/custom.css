@@ -10,7 +10,7 @@
   src: url(../assets/iosevka-regular.woff2); }
 
 .reveal code {
-  font-family: Iosevka; }
+  font-family: Iosevka, monospace; }
 
 .reveal blockquote {
   display: block;
