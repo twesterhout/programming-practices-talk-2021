@@ -256,21 +256,21 @@
 
           <div class="r-stack">
             <ul style="margin-top: 10px; margin-left: 10%;">
-              <li>Choose a server: <a href="https://github.com/">Github</a>,
+              <li>Choose a server: <a href="https://github.com/">GitHub</a>,
                 <a href="https://about.gitlab.com/">GitLab.com</a>,
                 <a href="https://gitlab.science.ru.nl/">Science GitLab</a>
                 <div class="fragment fade-out" data-fragment-index="1"
                      style="text-align: center;">
                   <p>GitLab is technically superior,<br>
-                  <span class="concept">but</span> all the cool kids hang out on Github.<br>
+                  <span class="concept">but</span> all the cool kids hang out on GitHub.<br>
                   </p>
-                  <p>&rarr; we will use Github for examples</p>
+                  <p>&rarr; we will use GitHub for examples</p>
                 </div>
               </li>
             </ul>
 
             <ul class="fragment" data-fragment-index="1" style="margin-top: 10px; margin-left: 10%;">
-              <li>Choose a server: <a href="https://github.com/">Github</a>,
+              <li>Choose a server: <a href="https://github.com/">GitHub</a>,
                 <a href="https://about.gitlab.com/">GitLab.com</a>,
                 <a href="https://gitlab.science.ru.nl/">Science GitLab</a></li>
               <li>Create a repository using web interface:
@@ -297,7 +297,7 @@
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
-          <h2>Example: following Github's instructions</h2>
+          <h2>Example: following GitHub's instructions</h2>
 
           <pre style="font-size: 70%;"><code data-trim
                                              data-noescape
@@ -428,24 +428,112 @@
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
           <h2>What to do with data?</h2>
+
+          <p class="concept">Git is not meant to be used with large files!</p>
+
+          <div style="text-align: left; margin-left: 25%;">
+            <p style="margin-bottom: 5px;">Solutions:</p>
+            <ul style="padding-left: 20px;">
+              <li>Git Large File Storage (LFS)</li>
+              <li>Data Version Control (DVC)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Git Large File Storage (LFS)</h2>
+
+          <div style="width: 70%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%">
+              Git LFS handles large files by storing references to the file in
+              the repository, but not the actual file itself.
+            </blockquote>
+            <p style="font-size: 50%; text-align: right;">
+              <span style="font-style: italic">Source:</span>
+              <a href="https://docs.github.com/en/github/managing-large-files/about-git-large-file-storage">GitHub Docs</a>
+            </p>
+          </div>
+
+          <ul style="width: 80%;">
+            <li class="fragment">Git servers take care of storing the files;</li>
+            <li class="fragment">
+                Tell <a href="https://git-lfs.github.com/"><code>git-lfs</code></a> to track specific files:
+                <pre style="font-size: 70%; margin-left: 0; margin-top: 5px; margin-bottom: 5px;"><code
+                     data-trim data-noescape class="shell">
+                    $ git lfs track "*.h5" # Track all HDF5 files
+                    Adding path *.h5
+                    $ git add "heisenberg_37.h5" # Work using standard git commands
+                </code></pre>
+            </li>
+            <li class="fragment">
+                Storage limits:
+                <table style="margin-top: 5px; border: 3px solid #657b83;">
+                  <tr>
+                    <td>GitHub Free</td>
+                    <td><code>&nbsp;2G</code></td>
+                  </tr>
+                  <tr>
+                    <td>GitLab.com Free</td>
+                    <td><code>10G</code></td>
+                  </tr>
+                  <tr>
+                    <td>Science GitLab</td>
+                    <td><code>10G</code> <span style="font-style: italic; color: #93a1a1;">(probably)</span></td>
+                  </tr>
+                </table>
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Data Version Control (DVC)</h2>
+
+          <div style="width: 70%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%">
+              DVC is built to make ML models shareable and reproducible. It is designed to
+              handle large files, data sets, machine learning models, and metrics as well as
+              code.
+            </blockquote>
+            <p style="font-size: 50%; text-align: right;">
+              <span style="font-style: italic; margin-right: 20px;">ML = Machine Learning,</span>
+              <span style="font-style: italic">Source:</span>
+              <a href="https://dvc.org/">DVC Homepage</a>
+            </p>
+          </div>
+
+          <ul>
+            <li class="fragment">
+              Git-like workflow, e.g.
+                <a href="https://dvc.org/doc/command-reference/add"><code>dvc add</code></a>,
+                <a href="https://dvc.org/doc/command-reference/push"><code>dvc push</code></a>
+                etc.
+            </li>
+            <li class="fragment">
+              <span style="font-weight: bold;">You</span> choose where data is stored. Suggestion:<br>
+              <code>&nbsp;&nbsp;if</code> you are broke (like me)<br>
+              <code>&nbsp;&nbsp;&nbsp;&nbsp;then</code> <a href="https://www.surf.nl/en/surfdrive-store-and-share-your-files-securely-in-the-cloud">Surfdrive</a> (<code>500G</code> per RU employee)<br>
+              <code>&nbsp;&nbsp;&nbsp;&nbsp;else</code> <a href="https://aws.amazon.com/s3/">Amazon S3</a> (easier to collaborate)
+            </li>
+          </ul>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
           <h2>Recap</h2>
-          <h3>Version Control Systems</h3>
 
           <ul>
-            <li>Copy/paste &rarr; Local &rarr; Centralized &rarr; Distributed &rarr; Git</li>
-            <li>Repository, commits, branches</li>
-            <li>Remotes?</li>
-            <li><code>add</code>, <code>commit</code>, <code>push</code></li>
-            <li><code>status</code>, <code>diff</code>, <code>log</code></li>
-            <li><code>clone</code>, <code>pull</code></li>
-            <li>Each project has a corresponding repository</li>
-            <li>Git LFS for important data files</li>
+            <li><span class="concept">Have a repository for every project you work on!</span></li>
+            <li>Git LFS for keeping track of <span style="font-style: italic">production</span> datasets<br>
+                (i.e. data to reproduce your figures).
+            </li>
+            <li><span style="color: #93a1a1">(optional)</span> DVC for keeping track of "work-in-progress" data.</li>
           </ul>
+          <p class="fragment concept">Questions?</p>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
@@ -477,11 +565,11 @@
             </p>
           </div>
 
-          <div style="text-align: left; margin-left: 10%;">
+          <div>
             <ul>
               <li>Virtual machines;</li>
               <li>Hardware drivers;</li>
-              <li>...</li>
+              <li>etc.</li>
             </ul>
           </div>
         </section>
