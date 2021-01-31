@@ -377,27 +377,51 @@
           <h2>Example: updating</h2>
 
           <pre style="font-size: 70%; margin-top: 0; margin-bottom: 0;"><code
-               data-trim data-noescape data-line-numbers="1|2-3|4|5|6,9-17"
+               data-trim data-noescape data-line-numbers="1|2,5-16"
                class="shell" style="max-height: 500px;">
               $ cd quantum_skyrmions/
-              $ git pull origin main # Pull the changes from remote
+              $ git pull origin main # fetch &amp; merge changes from remote
+              Username for 'https://github.com': <span style="font-style: italic;">username</span>
+              Password for 'https://<span style="font-style: italic;">username</span>@github.com': <span style="font-style: italic;">password</span>
+              remote: Enumerating objects: 5, done.
+              remote: Counting objects: 100% (5/5), done.
+              remote: Compressing objects: 100% (1/1), done.
+              remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0
+              Unpacking objects: 100% (3/3), 1.76 KiB | 451.00 KiB/s, done.
+              From https://github.com/twesterhout/quantum_skyrmions
+               * branch            main       -&gt; FETCH_HEAD
+                 817e53d..88e8c26  main       -&gt; origin/main
+              Updating 817e53d..88e8c26
+              Fast-forward
+               SimpleTests.wl | 139 ++++++++++++++++++++++++++++++++--------
+               1 file changed, 114 insertions(+), 25 deletions(-)
           </code></pre>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
-          <p style="font-size: 200%;">
-            <span style="font-weight: bold; text-decoration: underline;">Guideline:</span>
-            Create a repository for every project you work on</p>
+          <h2>Git</h2>
 
-          <div style="text-align: left; margin-top: 10%; margin-left: 5%;">
-            <ul>
-              <li>Private/Public</li>
-              <li>Github/GitLab</li>
-              <li>...</li>
-            </ul>
-          </div>
+          <ul>
+            <li>Concepts (repository, commit, hash, branch, <span>remote</span>)
+            </li>
+            <li class="fragment">
+              <code>git <a href="https://git-scm.com/docs/git-init">init</a></code> &mdash; create new local repository<br>
+              <code>&nbsp;&nbsp;&nbsp; <a href="https://git-scm.com/docs/git-remote">remote add</a></code> &mdash; add new remote repository<br>
+              <code>&nbsp;&nbsp;&nbsp; <a href="https://git-scm.com/docs/git-clone">clone</a></code> &mdash; clone an existing repository<br>
+              <code>&nbsp;&nbsp;&nbsp; <a href="https://git-scm.com/docs/git-add">add</a></code> &mdash; add some changes to the next commit<br>
+              <code>&nbsp;&nbsp;&nbsp; <a href="https://git-scm.com/docs/git-commit">commit</a></code> &mdash; commit changes<br>
+              <code>&nbsp;&nbsp;&nbsp; <a href="https://git-scm.com/docs/git-push">push</a></code> &mdash; publish local changes on a remote<br>
+              <code>&nbsp;&nbsp;&nbsp; <a href="https://git-scm.com/docs/git-pull">pull</a></code> &mdash; get all changes from remote to local repository<br>
+              <code>&nbsp;&nbsp;&nbsp; <a href="https://git-scm.com/docs/git-status">status</a></code> &mdash; view changes in working directory<br>
+            </li>
+          </ul>
+
+          <h3 class="fragment">
+            <span style="font-weight: bold; text-decoration: underline;">Guideline:</span>
+            have a repository for every project you work on
+          </h3>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
