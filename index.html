@@ -870,11 +870,165 @@
             </p>
           </div>
 
+          <div style="width: 90%;">
+            <p style="text-align: left; margin-left: 5%; margin-top: 0; margin-bottom: 0; font-size: 75%;">Example:</p>
+            <pre style="font-size: 60%; margin-top: 0;"><code data-trim data-noescape
+              data-line-numbers="1|2-4|5-6" class="shell"
+              style="max-height: 500px;">
+              $ # Hmmm, our cluster does not have NeoVim installed...
+              $ # No problem!
+              $ wget -q https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
+              $ chmod +x nvim.appimage
+              $ # Yay!
+              $ ./nvim.appimage
+            </code></pre>
+          </div>
+
           <ul>
-            <li></li>
+            <li>Main idea: bundle all dependencies together with the executable.</li>
+            <li>Great for cases when static linking is not an option.</li>
           </ul>
         </section>
 
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Reproducibility</h2>
+
+          <ul>
+            <li>Sharing your environment (Conda &amp; Singularity).</li>
+            <li>Making your code portable (Static linking &amp; AppImages).<br>
+              <p class="concept" style="text-align: center;">Questions?</p></li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Correctness</h2>
+
+          <div style="width: 50%; margin-left: auto; margin-right: auto;">
+            <img src="assets/img/defect_detection_rates.png" style="margin-bottom: 0;">
+            <p style="font-size: 50%; text-align: right; margin-top: 0; margin-right: 20px;">
+              <span style="font-style: italic">Source:</span>
+              <a href="https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670">Code Complete, by Steve McConnell</a>
+            </p>
+          </div>
+          <ul>
+            <li>Code reviews.</li>
+            <li>Tests.</li>
+            <li style="color: #93a1a1;">Proofs &amp; formal verification methods &mdash; some other time.</li>
+            <li style="color: #93a1a1;">etc. &mdash; some other time.</li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Code reviews</h2>
+
+          <h3 style="margin-left: auto; margin-right: auto; text-align: center; width: 70%;">
+            <span class="concept">Guideline:</span> have at least one other
+            person read and understand your code</h3>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Tests: 0</h2>
+
+          <h3><span class="concept">Guideline:</span> have tests for every
+            project you work on</h3>
+
+          <div class="fragment" style="text-align: left; width: 90%; margin-top: 10%; margin-left: 10%;">
+            <p class="concept" style="margin-bottom: 0;">Level 0:</p>
+            <ul>
+              <li>Play around in Python/Matlab/Julia interpreter<br>
+                &amp; copy to your script/notebook when it starts working.</li>
+              <li>Have a small Fortran/C/C++ file with print statements<br>
+                &amp; ...
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Tests: 1</h2>
+
+          <div style="text-align: left;">
+            <p style="margin-bottom: 0; margin-left: 5%;"><span class="concept">Level 1</span>:
+              put your tests in a file &amp; use a testing framework, e.g.</p>
+
+            <div class="fragment r-hstack">
+              <pre style="font-size: 55%; width: 65%; margin-left: 0; margin-right: 20px;"><code data-trim data-noescape
+                class="console" style="max-height: 500px;">
+                $ pytest
+                ========================== test session starts ===========================
+                platform linux -- Python 3.x.y, pytest-6.x.y, py-1.x.y, pluggy-0.x.y
+                cachedir: $PYTHON_PREFIX/.pytest_cache
+                rootdir: $REGENDOC_TMPDIR
+                collected 1 item
+
+                test_sample.py F                                                    [100%]
+
+                ================================ FAILURES ================================
+                ______________________________ test_answer _______________________________
+
+                    def test_answer():
+                &gt;       assert inc(3) == 5
+                E       assert 4 == 5
+                E        +  where 4 = inc(3)
+
+                test_sample.py:6: AssertionError
+                ======================== short test summary info =========================
+                FAILED test_sample.py::test_answer - assert 4 == 5
+                =========================== 1 failed in 0.12s ============================
+              </code></pre>
+
+              <div style="width: 30%;">
+                <p style="text-align: left; margin-left: 25px; margin-top: 0; margin-bottom: 0; font-size: 75%;"><code>test_sample.py</code>:</p>
+                <pre style="font-size: 55%; margin-top: 0;"><code data-trim data-noescape class="python">
+                  def inc(x):
+                      return x + 1
+
+                  def test_answer():
+                      assert inc(3) == 5
+                </code></pre>
+                <p style="font-size: 50%; text-align: right; margin-right: 20px;">
+                  <span style="font-style: italic">Source:</span>
+                  <a href="https://docs.pytest.org/en/stable/index.html">pytest documentation</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Tests: 0.5</h2>
+
+          <p style="margin-bottom: 0;"><span class="concept">Level 0.5</span> (i.e. a half measure):
+              use asserts excessively, e.g.</p>
+
+          <div style="text-align: left;">
+            <pre style="font-size: 60%; width: 80%;"><code data-trim data-noescape class="python">
+              # Python
+              assert x &gt; 0, "real log is undefined for negative inputs"
+            </code></pre>
+            <pre style="font-size: 60%; width: 80%;"><code data-trim data-noescape class="cpp">
+              // C and C++
+              assert(x &gt; 0 &amp;&amp; "real log is undefined for negative inputs");
+            </code></pre>
+
+            <pre style="font-size: 60%; width: 80%;"><code data-trim data-noescape class="julia">
+              # Julia
+              @assert x &gt; 0 "real log is undefined for negative inputs"
+            </code></pre>
+          </div>
+        </section>
 
       </div>
     </div>
