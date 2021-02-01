@@ -680,14 +680,201 @@
                  data-background-position="bottom right 10%">
           <h2>Singularity</h2>
 
+          <div style="width: 80%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%;">
+              Singularity containers can be built to include all of the
+              programs, libraries, data and scripts such that an entire
+              demonstration can be contained and either archived or distributed
+              for others to replicate no matter what version of Linux they are
+              presently running.
+            </blockquote>
+            <p style="font-size: 55%; margin-top: 0; text-align: right;">
+              <span style="font-style: italic">Source:</span>
+              <a href="https://sylabs.io/guides/3.7/user-guide/introduction.html">Singularity User Guide</a>
+            </p>
+
+            <ul>
+              <li><span class="concept">Container</span> is a single file;</li>
+              <li>Can easily run Docker containers<br>
+                (i.e.  <a href="https://cloud.sylabs.io/library">Container Library</a> +
+                <a href="https://hub.docker.com/">Docker Hub</a>)
+              </li>
+              <li>Imagine having admin rights on the cluster &#x1F60F;</li>
+            </ul>
+          </div>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
-          <h2>...</h2>
+          <h2 style="margin-bottom: 0;">Example: creating a container</h2>
 
+          <div class="r-hstack">
+            <div style="width: 45%; margin-right: 0;">
+              <pre style="font-size: 60%;"><code data-trim data-noescape class="shell">
+              $ # no GPU locally...
+              $ nvcc hello.cu -o hello
+              bash: nvcc: command not found
+              $ # Singularity to the rescue!
+              $ singularity build hello.sif Singularity
+              INFO:    Starting build...
+              INFO:    Running setup scriptlet
+              + mkdir -p /workdir
+              INFO:    Copying hello.cu to /workdir/
+              INFO:    Running post scriptlet
+              + /bin/bash /.post.script
+              INFO:    Adding runscript
+              INFO:    Creating SIF file...
+              INFO:    Build complete: hello.sif
+              </code></pre>
+            </div>
+
+            <div style="width: 55%;">
+              <p style="text-align: left; margin-left: 25px; margin-top: 0; margin-bottom: 0; font-size: 75%;"><code>hello.cu</code>:</p>
+              <pre style="font-size: 50%; margin-top: 0; margin-bottom: 0;"><code data-trim data-noescape class="cuda">
+              __global__ void cuda_hello() {
+                  printf("Hello World from GPU!\n");
+              }
+
+              int main() {
+                  cuda_hello&lt;&lt;&lt;1, 1&gt;&gt;&gt;();
+                  return 0;
+              }
+              </code></pre>
+
+              <p style="text-align: left; margin-left: 25px; margin-top: 0; margin-bottom: 0; font-size: 75%;"><code>Singularity</code>:</p>
+              <pre style="font-size: 50%; margin-top: 0;"><code data-trim data-noescape class="plaintext">
+                Bootstrap: docker
+                From: nvidia/cuda:11.0-devel-ubuntu20.04
+
+                %setup
+                    mkdir -p ${SINGULARITY_ROOTFS}/workdir
+
+                %files
+                    hello.cu /workdir/
+
+                %post
+                    cd /workdir
+                    nvcc hello.cu -o hello
+
+                %runscript
+                    /workdir/hello
+              </code></pre>
+            </div>
+          </div>
+          <p style="text-align: left; margin-left: 5%; font-size: 90%;">
+            <span class="concept">Disclaimer:</span> this is an advanced example</p>
         </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Reproducibility</h2>
+
+          <ul>
+            <li>Sharing your environment (Conda &amp; Singularity).<br>
+              <span class="concept" style="margin-left: 24px;">Questions?</p>
+            </li>
+            <li class="fragment">Making your code portable:<br>
+              <span style="margin-left: 20px;">&rarr; Static executables<br></span>
+              <span style="margin-left: 20px;">&rarr; AppImages<br></span>
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Static executables</h2>
+
+          <div class="r-hstack">
+            <div style="width: 60%; margin-right: 0;">
+              <pre style="font-size: 55%;"><code data-trim data-noescape
+                data-line-numbers="1-5|6-10|11-13|14-17|18-21" class="shell"
+                style="max-height: 500px;">
+              $ # Compiling locally...
+              $ g++-10 -std=c++20 thread.cpp -o thread -lpthread
+              $ # Works locally
+              $ ./thread
+              Stopping...
+              $ # And on lilo6
+              $ scp thread lilo.science.ru.nl:
+              $ ./thread
+              $ ssh lilo6.science.ru.nl ./thread
+              Stopping...
+              $ # But breaks on lilo5
+              $ ssh lilo5.science.ru.nl ./thread
+              [...] version `GLIBCXX_3.4.22' not found [...]
+              $ # Compile statically!
+              $ g++-10 -std=c++20 thread.cpp -o thread \
+                  -static -static-libgcc -static-libstdc++ \
+                  -Wl,--whole-archive -lpthread -Wl,--no-whole-archive
+              $ # Now works on lilo5 as well!
+              $ scp thread lilo.science.ru.nl:
+              $ ssh lilo5.science.ru.nl ./thread
+              Stopping...
+              </code></pre>
+            </div>
+
+            <div style="width: 40%;">
+              <p style="text-align: left; margin-left: 25px; margin-top: 0; margin-bottom: 0; font-size: 75%;"><code>thread.cpp</code>:</p>
+              <pre style="font-size: 50%; margin-top: 0;"><code data-trim data-noescape class="cpp">
+              #include &lt;chrono&gt;
+              #include &lt;cstdio&gt;
+              #include &lt;thread&gt;
+
+              auto main() -&gt; int {
+                using namespace std::chrono_literals;
+                // A sleepy worker thread
+                auto sleepy_worker = std::jthread{
+                  [](std::stop_token stoken) {
+                    for (;;) {
+                      std::this_thread::sleep_for(100ms);
+                      if (stoken.stop_requested()) {
+                        std::printf("Stopping...\n");
+                        return;
+                      }
+                    }
+                }};
+                sleepy_worker.request_stop();
+                sleepy_worker.join();
+              }
+              </code></pre>
+            </div>
+          </div>
+
+          <div style="font-size: 55%; text-align: left; margin-left: 5%;">
+          <p class="concept" style="margin-bottom: 0;">More info:</p>
+          <ul>
+            <li><a href="https://ro-che.info/articles/2016-09-09-static-binaries-scientific-computing">A case for static linking in scientific computing</a></li>
+            <li><a href="https://stackoverflow.com/a/2649430">Difference between static and shared libraries</a></li>
+            <li><a href="https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Link-Options.html#Link-Options">GCC link options</a> (e.g. <code>-static</code>)</li>
+          </ul>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>AppImage</h2>
+          <h3>Linux apps that run anywhere</h3>
+
+          <div style="width: 75%; margin-left: auto; margin-right: auto;">
+            <blockquote style="width: 100%;">
+              Download an application, make it executable, and run! No need to
+              install. No system libraries or system preferences are altered.
+            </blockquote>
+            <p style="font-size: 55%; margin-top: 0; text-align: right;">
+              <span style="font-style: italic">Source:</span>
+              <a href="https://appimage.org/">AppImage Homepage</a>
+            </p>
+          </div>
+
+          <ul>
+            <li></li>
+          </ul>
+        </section>
+
 
       </div>
     </div>
