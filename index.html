@@ -844,12 +844,12 @@
           </div>
 
           <div style="font-size: 55%; text-align: left; margin-left: 5%;">
-          <p class="concept" style="margin-bottom: 0;">More info:</p>
-          <ul>
-            <li><a href="https://ro-che.info/articles/2016-09-09-static-binaries-scientific-computing">A case for static linking in scientific computing</a></li>
-            <li><a href="https://stackoverflow.com/a/2649430">Difference between static and shared libraries</a></li>
-            <li><a href="https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Link-Options.html#Link-Options">GCC link options</a> (e.g. <code>-static</code>)</li>
-          </ul>
+            <p class="concept" style="margin-bottom: 0;">More info:</p>
+            <ul>
+              <li><a href="https://ro-che.info/articles/2016-09-09-static-binaries-scientific-computing">A case for static linking in scientific computing</a></li>
+              <li><a href="https://stackoverflow.com/a/2649430">Difference between static and shared libraries</a></li>
+              <li><a href="https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Link-Options.html#Link-Options">GCC link options</a> (e.g. <code>-static</code>)</li>
+            </ul>
           </div>
         </section>
 
@@ -1028,6 +1028,96 @@
               @assert x &gt; 0 "real log is undefined for negative inputs"
             </code></pre>
           </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2 style="margin-bottom: 0;">Tests: 2</h2>
+
+          <div class="r-hstack">
+            <div style="width: 40%; font-size: 90%; margin-right: 0; text-align: left;">
+              <p><span class="concept">Level 2</span>:
+                <a href="https://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a></p>
+              <ul class="fragment" data-fragment-index="1">
+                <li><a href="https://docs.github.com/en/actions">GitHub Actions</a>;</li>
+                <li><a href="https://docs.gitlab.com/ee/ci/">GitLab CI</a>;</li>
+                <li>etc.</li>
+              </ul>
+            </div>
+
+            <div style="width: 60%;" class="fragment" data-fragment-index="1">
+              <p style="text-align: left; margin-left: 40px; margin-top: 0; margin-bottom: 0; font-size: 75%;"><code>CI.yml</code>:</p>
+              <pre style="font-size: 50%; margin-top: 0;"><code data-trim data-noescape
+                class="cpp" style="max-height: 500px;">
+                name: Ubuntu
+                env:
+                  BUILD_TYPE: Debug
+                  INSTALL_LOCATION: .local
+                jobs:
+                  build:
+                    strategy:
+                      matrix:
+                        gcc-version: [7, 8, 9, 10]
+                    runs-on: ubuntu-latest
+                    steps:
+                    - uses: actions/checkout@v2
+                      with:
+                        submodules: true
+                    - name: configure
+                      run: |
+                        cmake -Bbuild \
+                          -DCMAKE_CXX_COMPILER=g++-${{ matrix.gcc-version }} \
+                          -DCMAKE_C_COMPILER=gcc-${{ matrix.gcc-version }} \
+                          -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+                          -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/$INSTALL_LOCATION
+                    - name: build
+                      run: cmake --build build -j4
+                    - name: run tests
+                      run: cd build &amp;&amp; ctest -VV
+                    - name: install project
+                      run: cmake --build build --target install
+              </code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Tests</h2>
+
+          <h3><span class="concept">Guideline:</span> reach at least level 0.5
+            when developing code</h3>
+
+          <h3 class="fragment"><span class="concept">Guideline:</span> reach at least level 1
+            when publishing a paper</h3>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
+          <h2>Recap</h2>
+
+          <ul>
+            <li>Reproducibility:<br>
+                <ul>
+                  <li>Git repository for every project;</li>
+                  <li>Per-project Conda environments;</li>
+                </ul>
+            </li>
+            <li>Correctness:<br>
+                <ul>
+                  <li>At least one person understood your code;</li>
+                  <li>Asserts when writing new code;</li>
+                  <li>Unit testing before producing publishable results;</li>
+                </ul>
+            </li>
+            <li>These slides:<br>
+                <a href="https://twesterhout.github.io/programming-practices-talk-2021">
+                  <code style="font-size: 90%;">https://twesterhout.github.io/programming-practices-talk-2021</code>
+                </a>
+          </ul>
         </section>
 
       </div>
