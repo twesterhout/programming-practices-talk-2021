@@ -28,6 +28,12 @@
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
+          <h2>Disclaimer</h2>
+        </section>
+
+        <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
+                 data-background-size="25%"
+                 data-background-position="bottom right 10%">
           <h2>Contents</h2>
 
           <ul>
@@ -140,8 +146,8 @@
           </div>
 
           <ul class="fragment">
-            <li>Concepts</li>
-            <li>Example &amp; some commands</li>
+            <li>Concepts;</li>
+            <li>Examples &amp; commands;</li>
           </ul>
         </section>
 
@@ -222,10 +228,10 @@
           <h2>Git</h2>
 
           <ul>
-            <li>Concepts (repository, commit, hash, branch)<br>
+            <li>Concepts (repository, commit, hash, branch);<br>
                 <p class="concept" style="text-align: center;">Questions?</p>
             </li>
-            <li class="fragment">Examples &amp; commands</li>
+            <li class="fragment">Examples &amp; commands;</li>
           </ul>
         </section>
 
@@ -485,7 +491,7 @@
             </p>
           </div>
 
-          <ul>
+          <ul style="width: 100%; margin-left: 20%;">
             <li class="fragment">
               Git-like workflow, e.g.
                 <a href="https://dvc.org/doc/command-reference/add"><code>dvc add</code></a>,
@@ -496,7 +502,11 @@
               <span style="font-weight: bold;">You</span> choose where data is stored. Suggestion:<br>
               <code>&nbsp;&nbsp;if</code> you are broke (like me)<br>
               <code>&nbsp;&nbsp;&nbsp;&nbsp;then</code> <a href="https://www.surf.nl/en/surfdrive-store-and-share-your-files-securely-in-the-cloud">Surfdrive</a> (<code>500G</code> per RU employee)<br>
-              <code>&nbsp;&nbsp;&nbsp;&nbsp;else</code> <a href="https://aws.amazon.com/s3/">Amazon S3</a> (easier to collaborate)
+              <code>&nbsp;&nbsp;&nbsp;&nbsp;else</code> <a href="https://aws.amazon.com/s3/">Amazon S3</a> (easier to collaborate)<br>
+              <p style="width: 70%;">(In the nearest future, <a
+                href="https://wiki.cncz.science.ru.nl/index.php?title=Diskruimte&setlang=en#Ceph_Storage">Ceph
+                storage cluster</a>
+              managed by C&amp;CZ might get you best of both)</p>
             </li>
           </ul>
         </section>
@@ -504,7 +514,7 @@
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
                  data-background-size="25%"
                  data-background-position="bottom right 10%">
-          <h2>Recap</h2>
+          <h2>Keeping track of files</h2>
 
           <ul>
             <li><span class="concept">Have a repository for every project you work on!</span></li>
@@ -608,6 +618,10 @@
             <li><span class="concept">Packages</span> &mdash; programs, libraries, etc.</li>
             <li><span class="concept">Environments</span> consist of packages</li>
           </ul>
+
+          <p class="fragment" style="font-size: 80%; color: #839496;">Pre-installed on TCM cluster.<br>
+            <code>module load Tcm; module load
+              Anaconda-3-2020.07</code><br>and you are good to go.</p>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
@@ -618,7 +632,7 @@
           <div class="r-hstack">
             <pre style="font-size: 60%; margin-right: 0; width: 40%;"><code data-trim data-noescape class="shell">
             $ # Creating an environment...
-            $ conda env create -f conda-devel.yml
+            $ <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file">conda env create</a> -f conda-devel.yml
             $ # Adding to git...
             $ git add conda-devel.yml
             $ git commit -m "Create environment"
@@ -701,6 +715,9 @@
               </li>
               <li>Imagine having admin rights on the cluster &#x1F60F;</li>
             </ul>
+
+            <p class="fragment" style="font-size: 80%; color: #839496;">Pre-installed on TCM cluster.<br>
+              <code>module load Singularity</code><br>and you are good to go.</p>
           </div>
         </section>
 
@@ -888,6 +905,15 @@
             <li>Main idea: bundle all dependencies together with the executable.</li>
             <li>Great for cases when static linking is not an option.</li>
           </ul>
+
+          <div style="font-size: 55%; text-align: left; margin-left: 5%;">
+            <p class="concept" style="margin-bottom: 0;">More info:</p>
+            <ul>
+              <li><a href="https://appimage.org/">AppImage Homepage</a></li>
+              <li><a href="https://docs.appimage.org/packaging-guide/index.html">Packaging guide</a></li>
+              <li><a href="https://github.com/linuxdeploy/linuxdeploy"><code>linuxdeploy</code></a></li>
+            </ul>
+          </div>
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
@@ -914,7 +940,7 @@
               <a href="https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670">Code Complete, by Steve McConnell</a>
             </p>
           </div>
-          <ul>
+          <ul class="fragment">
             <li>Code reviews.</li>
             <li>Tests.</li>
             <li style="color: #93a1a1;">Proofs &amp; formal verification methods &mdash; some other time.</li>
@@ -957,7 +983,7 @@
                  data-background-position="bottom right 10%">
           <h2>Tests: 1</h2>
 
-          <div style="text-align: left;">
+          <div style="text-align: left; margin-bottom: 0;">
             <p style="margin-bottom: 0; margin-left: 5%;"><span class="concept">Level 1</span>:
               put your tests in a file &amp; use a testing framework, e.g.</p>
 
@@ -1000,9 +1026,22 @@
                   <span style="font-style: italic">Source:</span>
                   <a href="https://docs.pytest.org/en/stable/index.html">pytest documentation</a>
                 </p>
+
+                <div style="font-size: 55%; text-align: left; margin-left: 5%;">
+                  <p class="concept" style="margin-top: 0; margin-bottom: 0;">More info:</p>
+                  <ul>
+                    <li><a href="https://docs.pytest.org/en/stable/index.html">Unit testing in Python</a></li>
+                    <li><a href="https://www.mathworks.com/help/matlab/script-based-unit-tests.html">Unit testing in Matlab</a></li>
+                    <li><a href="https://docs.julialang.org/en/v1/stdlib/Test/">Unit testing in Julia</a></li>
+                    <li><a href="https://github.com/catchorg/Catch2">Unit testing in C++</a></li>
+                    <li><a href="https://sourceforge.net/projects/fortranxunit/">Unit testing in Fortran</a></li>
+                    <li><a href="https://www.wolfram.com/mathematica/new-in-10/integrated-unit-testing/">Unit testing in Mathematica</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
         </section>
 
         <section data-background-image="assets/img/ru_logo_a4_imm_eng_1.png"
@@ -1027,6 +1066,11 @@
               # Julia
               @assert x &gt; 0 "real log is undefined for negative inputs"
             </code></pre>
+
+            <p style="margin-left: auto; margin-right: auto; text-align: center; width: 60%; font-size: 80%; color: #839496;">
+            <span class="concept">Note: </span>asserts can be disabled for production runs, so no, they will not
+              slow down your code.
+            </p>
           </div>
         </section>
 
@@ -1115,7 +1159,8 @@
             </li>
             <li>These slides:<br>
                 <a href="https://twesterhout.github.io/programming-practices-talk-2021">
-                  <code style="font-size: 90%;">https://twesterhout.github.io/programming-practices-talk-2021</code>
+                  <code style="font-size: 90%;">
+                    https://twesterhout.github.io/programming-practices-talk-2021</code>
                 </a>
           </ul>
         </section>
